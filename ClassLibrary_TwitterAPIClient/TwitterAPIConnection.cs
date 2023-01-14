@@ -16,20 +16,27 @@ namespace ClassLibrary_TwitterAPIClient
         private static string consumer_key_secret;
         private static string acces_token;
         private static string acces_token_secret;
-        internal static string username = "vladsrb11";
-        List<ITweet> timelineTweets = new List<ITweet>();
 
+        public int numberOfTweets = 0;
         public TwitterClient userClient;
+
+        public List<ITweet> timelineTweets = new List<ITweet>();
+
+        internal static string username = "vladsrb11";
 
         public TwitterAPIConnection(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
         {
             userClient = new TwitterClient(consumer_key, consumer_key_secret, acces_token, acces_token_secret);
         }
 
+        public int getNumberOfTweets()
+        {
+            return numberOfTweets;
+        }
+
         public async Task RetrieveTweets()
         {
             var timelineIterator = userClient.Timelines.GetUserTimelineIterator(username);
-            int numberOfTweets = 0;
 
             while (!timelineIterator.Completed)
             {
@@ -45,7 +52,6 @@ namespace ClassLibrary_TwitterAPIClient
                 Console.WriteLine(tweet.ToString());
             }
             */
-
         }
     }
 }

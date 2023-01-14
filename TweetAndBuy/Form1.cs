@@ -27,7 +27,10 @@ namespace TweetAndBuy
 
             TwitterAPIConnection twitterConnection = new TwitterAPIConnection(consumer_key, consumer_key_secret, acces_token, acces_token_secret);
             await twitterConnection.RetrieveTweets();
-            
+
+            textBox1.Text = twitterConnection.timelineTweets[twitterConnection.numberOfTweets-1].ToString();
+
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
