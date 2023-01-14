@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetAndBuy", "TweetAndBuy\TweetAndBuy.csproj", "{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary_TwitterAPIClient", "ClassLibrary_TwitterAPIClient\ClassLibrary_TwitterAPIClient.csproj", "{BBF219A7-CA6A-4246-84A8-19B8393DBF1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF219A7-CA6A-4246-84A8-19B8393DBF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF219A7-CA6A-4246-84A8-19B8393DBF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF219A7-CA6A-4246-84A8-19B8393DBF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF219A7-CA6A-4246-84A8-19B8393DBF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCC90392-947C-4B4B-8FF6-F5161CD01019}
+	EndGlobalSection
+EndGlobal
