@@ -35,7 +35,6 @@ namespace ClassLibrary_TwitterAPIClient
 
         public string username { get; set; }
 
-
         protected string exceptionMessage = "None";
         protected bool checkException = false;
 
@@ -44,18 +43,6 @@ namespace ClassLibrary_TwitterAPIClient
         {
             numberOfTweets = 0;
             username= string.Empty;
-        }
-
-        public int getNumberOfTweets()
-        {
-            if (checkException)
-            {
-                return 1000;
-            }
-            else
-            {
-                return numberOfTweets;
-            }
         }
 
         public async Task countTweets()

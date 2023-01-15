@@ -83,10 +83,9 @@ namespace Connection_Twitter_GUI
 
         }
 
-        public async Task<int> getNumberOfTweetsForUser()
+        public async Task getNumberOfTweetsForUser()
         {
             await twitterData.countTweets();
-            return twitterData.getNumberOfTweets();
         }
 
 
