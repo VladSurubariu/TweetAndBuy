@@ -35,7 +35,7 @@ namespace ClassLibrary_TwitterAPIClient
 
         public string username
         {
-            get { return "vladsrb11"; }
+            get { return "vladsrb111"; }
         }
 
         protected string exceptionMessage = "None";

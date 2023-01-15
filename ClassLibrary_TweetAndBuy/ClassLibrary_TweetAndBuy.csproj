@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>TweetAndBuy</RootNamespace>
-    <AssemblyName>TweetAndBuy</AssemblyName>
+    <ProjectGuid>{93B5AA5E-78E6-4AAE-826A-198875BA4970}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibrary_TweetAndBuy</RootNamespace>
+    <AssemblyName>ClassLibrary_TweetAndBuy</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -84,9 +82,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Tweetinvi, Version=5.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TweetinviAPI.5.0.4\lib\netstandard2.0\Tweetinvi.dll</HintPath>
@@ -114,49 +109,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI.Designer.cs">
-      <DependentUpon>GUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Connection_Twitter_GUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI.resx">
-      <DependentUpon>GUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary_TweetAndBuy\ClassLibrary_TweetAndBuy.csproj">
-      <Project>{93b5aa5e-78e6-4aae-826a-198875ba4970}</Project>
-      <Name>ClassLibrary_TweetAndBuy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary_TwitterAPIClient\ClassLibrary_TwitterAPIClient.csproj">
       <Project>{bbf219a7-ca6a-4246-84a8-19b8393dbf1e}</Project>
       <Name>ClassLibrary_TwitterAPIClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
