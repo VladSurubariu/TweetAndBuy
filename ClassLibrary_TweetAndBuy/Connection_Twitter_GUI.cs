@@ -16,6 +16,7 @@ namespace Connection_Twitter_GUI
 
         public data_file() { }
 
+
         public List<string> readConnectionFile()
         {
             StreamReader sr = new StreamReader(dataFileName);
@@ -31,6 +32,26 @@ namespace Connection_Twitter_GUI
             return list_connection_info;
         }
 
+        
+        public void writeUsername (string given_username)
+        {
+           StreamWriter sw = File.AppendText(dataFileName);
+           sw.WriteLine("username:"+given_username);
+           sw.Close();
+        }
+
+        public void deleteUsername()
+        {
+            var tempFile = Path.GetTempFileName();
+            var linesToKeep = File.ReadLines(dataFileName).Where(l => l.Contains("username") != true);
+            
+            File.WriteAllLines(tempFile, linesToKeep);
+            File.Delete(dataFileName);
+            File.Move(tempFile, dataFileName);
+            File.Delete(tempFile);
+        }
+
+
         public string trimDataEntry(string key_type)
         {
             var s_key = from data in list_connection_info
@@ -44,10 +65,13 @@ namespace Connection_Twitter_GUI
     }
 
 
-    public class connection
+    public class connection : data_file
     {
         private static data_file acces_data = new data_file();
+
         private List<string> connection_data_list = new List<string>(acces_data.readConnectionFile());
+        
+
         public async void connectGUIToTwitterAPI()
         {
             var consumer_key = acces_data.trimDataEntry("consumer_key");

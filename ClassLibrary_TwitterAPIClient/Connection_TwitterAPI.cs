@@ -33,10 +33,8 @@ namespace ClassLibrary_TwitterAPIClient
 
         public int numberOfTweets;
 
-        public string username
-        {
-            get { return "vladsrb11"; }
-        }
+        public string username { get; set; }
+
 
         protected string exceptionMessage = "None";
         protected bool checkException = false;
@@ -44,6 +42,8 @@ namespace ClassLibrary_TwitterAPIClient
         public TwitterAPI_RetrieveData(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
             : base(consumer_key, consumer_key_secret, acces_token, acces_token_secret)
         {
+            numberOfTweets = 0;
+            username= string.Empty;
         }
 
 

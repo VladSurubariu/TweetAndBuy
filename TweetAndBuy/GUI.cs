@@ -15,23 +15,24 @@ namespace TweetAndBuy
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            string username = textBox2.Text;
 
             connection connection = new connection();
-            try
-            {
-                connection.connectGUIToTwitterAPI();
-            }
-            catch(Exception ex)
-            {
-                textBox1.Text = ex.Message;
-            }
+            connection.writeUsername(username);
+            connection.deleteUsername();
+            connection.connectGUIToTwitterAPI();
 
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
