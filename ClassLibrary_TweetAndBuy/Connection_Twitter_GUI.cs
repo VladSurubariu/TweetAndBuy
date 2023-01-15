@@ -5,34 +5,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary_TwitterAPIClient;
+using Tweetinvi.Parameters.V2;
 
 namespace Connection_Twitter_GUI
 {
     public class data_file
     {
-        public string fileName = "connection_data.txt";
-        public data_file() { }
-        public string readConnectionFile()
-        {
-            string text = File.ReadAllText(fileName);
+        public string dataFileName = @"../../connection_data.txt";
+        List<string> list_connection_info = new List<string>();
 
-            return text;
-            
+        public data_file() { }
+
+        public List<string> readConnectionFile()
+        {
+            StreamReader sr = new StreamReader(dataFileName);
+
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                list_connection_info.Add(line);
+                line = sr.ReadLine();
+            }
+            sr.Close();
+
+            return list_connection_info;
+        }
+
+        public string trimDataEntry(string key_type)
+        {
+            var s_key = from data in list_connection_info
+                               where data.Contains(key_type)
+                               select data;
+
+            string s_string = s_key.First();
+            string[] s_strings = s_string.Split(':');
+            return s_strings[1];
         }
     }
 
 
-    public class Connection_Twitter_GUI
+    public class connection
     {
-        private async void connectGUIToTwitterAPI(object sender, EventArgs e)
+        private static data_file acces_data = new data_file();
+        private List<string> connection_data_list = new List<string>(acces_data.readConnectionFile());
+        public async void connectGUIToTwitterAPI()
         {
-            string consumer_key = "wNvgwbfz4rdx4o9lPXwv8jUTE";
-            string consumer_key_secret = "eHc6mooipwwSXlKvCluC61TrkZDWNPzWRRhYoyHM1baPXqVW9F";
-            string acces_token = "1358431620068425731-RwpIYNKT3Wh7Uc1whaRoEJxwgxz6PF";
-            string acces_token_secret = "f8pnZLsk08fx2DF6rOPdo6mz6PjJrcJkkZ7yvdK7Ze3IW";
+            var consumer_key = acces_data.trimDataEntry("consumer_key");
+            var consumer_key_secret = acces_data.trimDataEntry("consumer_key_secret");
+            var acces_token = acces_data.trimDataEntry("acces_token");
+            var acces_token_secret = acces_data.trimDataEntry("acces_token_secret");
+
+            TwitterAPI_RetrieveData twitterData = new TwitterAPI_RetrieveData(consumer_key, consumer_key_secret, acces_token, acces_token_secret); //compozitie
+
+            var username = twitterData.username;
+            var user = await twitterData.userClient.Users.GetUserAsync(username);
 
 
-
+            await twitterData.countTweets();
+            int numberOfTweets = twitterData.getNumberOfTweets();
         }
     }
 }

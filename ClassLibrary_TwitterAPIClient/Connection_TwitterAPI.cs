@@ -35,7 +35,7 @@ namespace ClassLibrary_TwitterAPIClient
 
         public string username
         {
-            get { return "vladsrb111"; }
+            get { return "vladsrb11"; }
         }
 
         protected string exceptionMessage = "None";
@@ -59,24 +59,15 @@ namespace ClassLibrary_TwitterAPIClient
             }
         }
 
-        public async Task retrieveNumberOfTweets()
+        public async Task countTweets()
         {
             var timelineIterator = userClient.Timelines.GetUserTimelineIterator(username);
 
             while (!timelineIterator.Completed)
             {
-                try
-                {
-                    var page = await timelineIterator.NextPageAsync();
-                    timelineTweets.AddRange(page);
-                    numberOfTweets = Math.Max(page.Count(), numberOfTweets);
-
-                }
-                catch (Exception ex)
-                {
-                    checkException = true;
-                    exceptionMessage = ex.Message;
-                }
+                var page = await timelineIterator.NextPageAsync();
+                timelineTweets.AddRange(page);
+                numberOfTweets = Math.Max(page.Count(), numberOfTweets);
             }
         }
     }
