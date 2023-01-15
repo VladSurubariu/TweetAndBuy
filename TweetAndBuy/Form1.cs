@@ -25,12 +25,10 @@ namespace TweetAndBuy
             string acces_token = "1358431620068425731-RwpIYNKT3Wh7Uc1whaRoEJxwgxz6PF";
             string acces_token_secret = "f8pnZLsk08fx2DF6rOPdo6mz6PjJrcJkkZ7yvdK7Ze3IW";
 
-            TwitterAPIConnection twitterConnection = new TwitterAPIConnection(consumer_key, consumer_key_secret, acces_token, acces_token_secret);
-            await twitterConnection.RetrieveTweets();
+            TwitterAPIRetrieveData twitterData = new TwitterAPIRetrieveData(consumer_key, consumer_key_secret, acces_token, acces_token_secret);
+            await twitterData.RetrieveTweets();
 
-            textBox1.Text = twitterConnection.timelineTweets[twitterConnection.numberOfTweets-1].ToString();
-
-
+            textBox1.Text = twitterData.timelineTweets[twitterData.numberOfTweets-1].ToString();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

@@ -12,12 +12,12 @@ namespace ClassLibrary_TwitterAPIClient
 {
     public class TwitterAPIConnection
     {
-        private static string consumer_key;
-        private static string consumer_key_secret;
-        private static string acces_token;
-        private static string acces_token_secret;
+        private static string consumer_key { get; }
+        private static string consumer_key_secret { get; }
+        private static string acces_token { get; }
+        private static string acces_token_secret { get; }
+        public int numberOfTweets { get; set; }
 
-        public int numberOfTweets = 0;
         public TwitterClient userClient;
 
         public List<ITweet> timelineTweets = new List<ITweet>();
@@ -28,10 +28,13 @@ namespace ClassLibrary_TwitterAPIClient
         {
             userClient = new TwitterClient(consumer_key, consumer_key_secret, acces_token, acces_token_secret);
         }
-
-        public int getNumberOfTweets()
+        
+    }
+    public class TwitterAPIRetrieveData : TwitterAPIConnection // mostenire
+    {
+        public TwitterAPIRetrieveData(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
+            : base(consumer_key, consumer_key_secret, acces_token, acces_token_secret)
         {
-            return numberOfTweets;
         }
 
         public async Task RetrieveTweets()
@@ -44,14 +47,7 @@ namespace ClassLibrary_TwitterAPIClient
                 timelineTweets.AddRange(page);
                 numberOfTweets = Math.Max(page.Count(), numberOfTweets);
             }
-
-            /*
-            for (var index = 0; index < numberOfTweets; index++)
-            {
-                var tweet = timelineTweets[index];
-                Console.WriteLine(tweet.ToString());
-            }
-            */
         }
+
     }
 }
