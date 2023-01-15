@@ -68,25 +68,25 @@ namespace Connection_Twitter_GUI
     public class connection : data_file
     {
         private static data_file acces_data = new data_file();
-
         private List<string> connection_data_list = new List<string>(acces_data.readConnectionFile());
-        
 
-        public async void connectGUIToTwitterAPI()
+        public TwitterAPI_RetrieveData twitterData = new TwitterAPI_RetrieveData("", "", "", "");
+
+        public void connectGUIToTwitterAPI()
         {
             var consumer_key = acces_data.trimDataEntry("consumer_key");
             var consumer_key_secret = acces_data.trimDataEntry("consumer_key_secret");
             var acces_token = acces_data.trimDataEntry("acces_token");
             var acces_token_secret = acces_data.trimDataEntry("acces_token_secret");
 
-            TwitterAPI_RetrieveData twitterData = new TwitterAPI_RetrieveData(consumer_key, consumer_key_secret, acces_token, acces_token_secret); //compozitie
+            twitterData = new TwitterAPI_RetrieveData(consumer_key, consumer_key_secret, acces_token, acces_token_secret); //compozitie
 
-            var username = twitterData.username;
-            var user = await twitterData.userClient.Users.GetUserAsync(username);
+            
 
-
-            await twitterData.countTweets();
-            int numberOfTweets = twitterData.getNumberOfTweets();
+            //await twitterData.countTweets();
+            //int numberOfTweets = twitterData.getNumberOfTweets();
         }
+
+
     }
 }

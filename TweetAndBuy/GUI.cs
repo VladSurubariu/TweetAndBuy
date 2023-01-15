@@ -15,15 +15,25 @@ namespace TweetAndBuy
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             string username = textBox2.Text;
 
             connection connection = new connection();
-            connection.writeUsername(username);
-            connection.deleteUsername();
+            //connection.deleteUsername();
+            //connection.writeUsername(username);
+
             connection.connectGUIToTwitterAPI();
 
+            try
+            {
+                var user = await connection.twitterData.userClient.Users.GetUserAsync(username);
+                textBox1.Text = username;
+
+            }catch (Exception ex)
+            {
+                textBox1.Text = ex.Message.ToString().Split('(')[0];
+            }
 
         }
 

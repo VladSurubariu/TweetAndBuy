@@ -46,7 +46,6 @@ namespace ClassLibrary_TwitterAPIClient
             username= string.Empty;
         }
 
-
         public int getNumberOfTweets()
         {
             if (checkException)
