@@ -23,7 +23,6 @@ namespace TweetAndBuy
             //connection.writeUsername(username);
 
             connection.connectGUIToTwitterAPI();
-
             try
             {
                 var user = await connection.twitterData.userClient.Users.GetUserAsync(username);
@@ -31,26 +30,20 @@ namespace TweetAndBuy
 
                 await connection.getNumberOfTweetsForUser();
                 textBox1.Text = connection.twitterData.timelineTweets[0].ToString();
-
             }
             catch (Exception ex)
             {
                 textBox1.Text = ex.Message.ToString().Split('(')[0];
                 username = "vladsrb11";
             }
-            
-
-            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
