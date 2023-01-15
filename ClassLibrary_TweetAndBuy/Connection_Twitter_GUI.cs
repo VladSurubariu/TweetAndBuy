@@ -81,10 +81,12 @@ namespace Connection_Twitter_GUI
 
             twitterData = new TwitterAPI_RetrieveData(consumer_key, consumer_key_secret, acces_token, acces_token_secret); //compozitie
 
-            
+        }
 
-            //await twitterData.countTweets();
-            //int numberOfTweets = twitterData.getNumberOfTweets();
+        public async Task<int> getNumberOfTweetsForUser()
+        {
+            await twitterData.countTweets();
+            return twitterData.getNumberOfTweets();
         }
 
 
