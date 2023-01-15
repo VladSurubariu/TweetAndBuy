@@ -10,44 +10,74 @@ using Tweetinvi.Models;
 
 namespace ClassLibrary_TwitterAPIClient
 {
-    public class TwitterAPIConnection
+    public class TwitterAPI_Connection
     {
+
+        public TwitterClient userClient;
+
         private static string consumer_key { get; }
         private static string consumer_key_secret { get; }
         private static string acces_token { get; }
         private static string acces_token_secret { get; }
-        public int numberOfTweets { get; set; }
 
-        public TwitterClient userClient;
-
-        public List<ITweet> timelineTweets = new List<ITweet>();
-
-        internal static string username = "vladsrb11";
-
-        public TwitterAPIConnection(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
+        public TwitterAPI_Connection(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
         {
             userClient = new TwitterClient(consumer_key, consumer_key_secret, acces_token, acces_token_secret);
         }
         
     }
-    public class TwitterAPIRetrieveData : TwitterAPIConnection // mostenire
+    public class TwitterAPI_RetrieveData : TwitterAPI_Connection // mostenire
     {
-        public TwitterAPIRetrieveData(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
+
+        public List<ITweet> timelineTweets = new List<ITweet>();
+
+        public int numberOfTweets;
+
+        public string username
+        {
+            get { return "vladsrb11"; }
+        }
+
+        protected string exceptionMessage = "None";
+        protected bool checkException = false;
+
+        public TwitterAPI_RetrieveData(string consumer_key, string consumer_key_secret, string acces_token, string acces_token_secret)
             : base(consumer_key, consumer_key_secret, acces_token, acces_token_secret)
         {
         }
 
-        public async Task RetrieveTweets()
+
+        public int getNumberOfTweets()
+        {
+            if (checkException)
+            {
+                return 1000;
+            }
+            else
+            {
+                return numberOfTweets;
+            }
+        }
+
+        public async Task retrieveNumberOfTweets()
         {
             var timelineIterator = userClient.Timelines.GetUserTimelineIterator(username);
 
             while (!timelineIterator.Completed)
             {
-                var page = await timelineIterator.NextPageAsync();
-                timelineTweets.AddRange(page);
-                numberOfTweets = Math.Max(page.Count(), numberOfTweets);
+                try
+                {
+                    var page = await timelineIterator.NextPageAsync();
+                    timelineTweets.AddRange(page);
+                    numberOfTweets = Math.Max(page.Count(), numberOfTweets);
+
+                }
+                catch (Exception ex)
+                {
+                    checkException = true;
+                    exceptionMessage = ex.Message;
+                }
             }
         }
-
     }
 }
