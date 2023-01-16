@@ -35,3 +35,13 @@ D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\Tweet
 D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\ClassLibrary_TweetAndBuy.dll
 D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\ClassLibrary_TweetAndBuy.pdb
 D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\obj\Debug\TweetAndBuy.GUI.resources
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\EmbedIO.dll
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\SpotifyAPI.Web.Auth.dll
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\SpotifyAPI.Web.dll
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\Swan.Lite.dll
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\System.ValueTuple.dll
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\EmbedIO.xml
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\SpotifyAPI.Web.xml
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\SpotifyAPI.Web.Auth.xml
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\Swan.Lite.xml
+D:\Facultate\Anul 3\Medii si instrumente de programare\Proiect\TweetAndBuy\TweetAndBuy\bin\Debug\System.ValueTuple.xml

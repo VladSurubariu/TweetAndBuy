@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetAndBuy", "TweetAndBuy\TweetAndBuy.csproj", "{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetAndPlay", "TweetAndBuy\TweetAndPlay.csproj", "{F5FF190C-F23C-4D1A-A6D5-A18C8229F25D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary_TwitterAPIClient", "ClassLibrary_TwitterAPIClient\ClassLibrary_TwitterAPIClient.csproj", "{BBF219A7-CA6A-4246-84A8-19B8393DBF1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary_TweetAndBuy", "ClassLibrary_TweetAndBuy\ClassLibrary_TweetAndBuy.csproj", "{93B5AA5E-78E6-4AAE-826A-198875BA4970}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary_TweetAndPlay", "ClassLibrary_TweetAndBuy\ClassLibrary_TweetAndPlay.csproj", "{93B5AA5E-78E6-4AAE-826A-198875BA4970}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

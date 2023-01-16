@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary_TwitterAPIClient;
-using Tweetinvi.Parameters.V2;
 
 namespace Connection_Twitter_GUI
 {
@@ -64,7 +61,6 @@ namespace Connection_Twitter_GUI
         }
     }
 
-
     public class connection : data_file
     {
         private static data_file acces_data = new data_file();
@@ -80,7 +76,6 @@ namespace Connection_Twitter_GUI
             var acces_token_secret = acces_data.trimDataEntry("acces_token_secret");
 
             twitterData = new TwitterAPI_RetrieveData(consumer_key, consumer_key_secret, acces_token, acces_token_secret); //compozitie
-
         }
 
         public async Task getNumberOfTweetsForUser()
