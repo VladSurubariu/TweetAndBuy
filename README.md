@@ -1,2 +1,2 @@
-# TweetAndBuy
-This project uses the APIs from Twitter and Amazon in order to purchase from Amazon whatever is tweeted on my twitter profile
+# TweetAndPlay
+This project uses the APIs from Twitter and Spotify in order to add to a Spotify playlist whatever is tweeted on my twitter profile
