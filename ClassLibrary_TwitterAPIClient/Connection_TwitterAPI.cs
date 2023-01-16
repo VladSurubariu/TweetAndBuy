@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tweetinvi;
+using Tweetinvi.Iterators;
 using Tweetinvi.Models;
 
 namespace ClassLibrary_TwitterAPIClient
@@ -45,6 +46,7 @@ namespace ClassLibrary_TwitterAPIClient
         public async Task countTweets()
         {
             var timelineIterator = userClient.Timelines.GetUserTimelineIterator(username);
+            timelineTweets.Clear();
 
             while (!timelineIterator.Completed)
             {

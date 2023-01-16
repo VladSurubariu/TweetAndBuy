@@ -1,74 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Connection_Twitter_GUI;
 using SpotifyAPI.Web;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TweetAndBuy
 {
     public partial class GUI : Form
     {
+        connection connection = new connection();
+        SpotifyClient spotify = new SpotifyClient("BQCYMhW3apo1I1PqrKBpY0m3ZZrwqFI0_rnqqoPgtBqg-iRlxD_dBNn_t0jWA7Ds9xPZ24PiXCG5MW3Fe64cmxvgD8KE-uDxxgbsxFoXl5rWYqPLoGiz49QYvzDvuBGQwzQ5REKkK-JxwzW35b6cNg6BPSwp4picPSKU3Fdny_2ZkjKNUTkAYmN3D0Vw9rx0--r2RpIldV4mEBRUShiRWozPR7vL-O6rMmQ");
+        string username;
+        BackgroundWorker bw;
+        IList<string> uris = new List<string>();
+
         public GUI()
         {
             InitializeComponent();
         }
 
-        public async Task<string> connect_Spotify()
-        {
-            var spotify = new SpotifyClient("BQDPk1ceS4wDVrHIwgjIezDMceakSe-y6tmFNISXeLeT3-4vB48-67CGZf4S73d013AJiYpkfZTif4reA7ZInt0PBAq8PDwXy9ZVUyQajRlwSROi14Vm5oI5wy-rgGKF_0cHRlEtfg97Shh4OIprJydQT2Ldj7vAMVqEhdXPG2hKYj7TWoC9C-tt0sSILpJIV2L1tB1w6YG7JQpJMUJ4PqjsF_ypDMWwGvA");
-            var track = await spotify.Tracks.Get("1s6ux0lNiTziSrd7iUAADH");
-            var user = spotify.UserProfile.Current();
-
-            return track.Name;
-        }
-
         private async void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox2.Text;
-            connection connection = new connection();
-            //connection.deleteUsername();
-            //connection.writeUsername(username);
-
+            
             connection.connectGUIToTwitterAPI();
+            username = textBox2.Text;
+            connection.twitterData.username = username;
+            bw = new BackgroundWorker();
+            
             try
             {
                 var user = await connection.twitterData.userClient.Users.GetUserAsync(username);
-                connection.twitterData.username = username;
+                textBox1.Text = "Conectat";
 
-                await connection.getNumberOfTweetsForUser();
-
-                //my user id = 31227ybtxt3kqclie7aaxxojuvsi
-
-
-
-                var spotify = new SpotifyClient("BQAKnaGN3WCZUnYJjvKqbG7-E6BgN7I9zvKND9kkclhLKpyBij1Cv6AkkdX4dD3fWcNBXR0G5pvaxX4jNMGKrjhAGu76FNvFA0TkQrb1lbHUIeWZ5UGDTu_-Bnkw4-gtaQk_LWyBSUFINhDaPJzf-wMTiW5NO4QYqWr8BIRrE55NOGJmns-SGKsup3pmSlPuWf2Gf71QzgaAPxBUSFFS2H4kxyExbUQWZUOuKHI5FAvUcaXM4wztw9DDDJBgdj3SdSrsjnoilu0");
-
-                //PlaylistCreateRequest request = new PlaylistCreateRequest("Tweeted");
-                //request.Public = true;
-                //var playlist = await spotify.Playlists.Create("31227ybtxt3kqclie7aaxxojuvsi", request);
-
-                SearchRequest search_request = new SearchRequest(SearchRequest.Types.Track, connection.twitterData.timelineTweets[0].ToString());
-                search_request.Market = "RO";
-                search_request.Limit= 1;
-                search_request.Offset = 0;
-                var track_info = await spotify.Search.Item(search_request);
-
-
-                var track_uri = track_info.Tracks.Items[0].Uri;
-                IList<string> uris = new List<string>();
-                uris.Add(track_uri);
-
-                PlaylistAddItemsRequest add_items_playlist_request = new PlaylistAddItemsRequest(uris);
-                await spotify.Playlists.AddItems("5LnH39HnW4H4tncQMVdQzO", add_items_playlist_request);
-
-                //textBox1.Text = connection.twitterData.timelineTweets[0].ToString();
-                textBox1.Text = "Adaugat";
-
-
+                bw.DoWork += (obj, ea) => TaskAsync();
+                bw.RunWorkerAsync();
             }
             catch (Exception ex)
             {
@@ -83,6 +55,29 @@ namespace TweetAndBuy
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private async void TaskAsync()
+        {
+            while (true)
+            {
+                await connection.getNumberOfTweetsForUser();
+
+                SearchRequest search_request = new SearchRequest(SearchRequest.Types.Track, connection.twitterData.timelineTweets[0].ToString());
+                search_request.Market = "RO";
+                search_request.Limit = 1;
+                search_request.Offset = 0;
+
+                var track_info = await spotify.Search.Item(search_request);
+                var track_uri = track_info.Tracks.Items[0].Uri;
+                if (uris.Contains(track_uri) == false)
+                {
+                    uris.Add(track_uri);
+                    PlaylistAddItemsRequest add_items_playlist_request = new PlaylistAddItemsRequest(uris);
+                    await spotify.Playlists.AddItems("5LnH39HnW4H4tncQMVdQzO", add_items_playlist_request);
+                }
+                Thread.Sleep(5000);
+            }
         }
     }
 }
