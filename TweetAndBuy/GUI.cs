@@ -16,7 +16,7 @@ namespace TweetAndBuy
     public partial class GUI : Form
     {
         connection connection = new connection();
-        SpotifyClient spotify = new SpotifyClient("BQCkKeekZrmJcJ6Xncm6WmVBOgV8kNgG6FCi7vmyT-4FTIO_OjtUyluvqNsJeWLOjTM3U3B08DJWkVi-YmHLhfbreLxoIRWFKiY_yKo956fZF8WThO_A3ShXL6Zw0H0x8QQgP36cviTP-6gH1LCway2shaVO5HVxoiSd_MCE6EF0_uthfIZGceV9wsCERo3o-XKZaL2SvUrkI5NObMfCbisZCFmMEbZkWis");
+        SpotifyClient spotify = new SpotifyClient("YOUR_ACCES_KEY");
         string username;
         BackgroundWorker bw;
         IList<string> uris = new List<string>();
@@ -37,7 +37,7 @@ namespace TweetAndBuy
             try
             {
                 var user = await connection.twitterData.userClient.Users.GetUserAsync(username);
-                textBox1.Text = "Conectat";
+                button1.Text = "Conectat";
                 button1.Enabled = false;
 
                 bw.DoWork += (obj, ea) => TaskAsync();
@@ -45,7 +45,7 @@ namespace TweetAndBuy
             }
             catch (Exception ex)
             {
-                textBox1.Text = ex.Message.ToString().Split('(')[0];
+                textBox2.Text = ex.Message.ToString().Split('(')[0];
                 username = "vladsrb11";
             }
         }
@@ -63,6 +63,11 @@ namespace TweetAndBuy
             while (true)
             {
                 await connection.getNumberOfTweetsForUser();
+
+                if(connection.twitterData.timelineTweets.Count() == 0)
+                {
+                    break;
+                }
 
                 SearchRequest search_request = new SearchRequest(SearchRequest.Types.Track, connection.twitterData.timelineTweets[0].ToString());
                 search_request.Market = "RO";
