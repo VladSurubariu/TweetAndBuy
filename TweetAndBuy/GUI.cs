@@ -16,7 +16,7 @@ namespace TweetAndBuy
     public partial class GUI : Form
     {
         connection connection = new connection();
-        SpotifyClient spotify = new SpotifyClient("BQCYMhW3apo1I1PqrKBpY0m3ZZrwqFI0_rnqqoPgtBqg-iRlxD_dBNn_t0jWA7Ds9xPZ24PiXCG5MW3Fe64cmxvgD8KE-uDxxgbsxFoXl5rWYqPLoGiz49QYvzDvuBGQwzQ5REKkK-JxwzW35b6cNg6BPSwp4picPSKU3Fdny_2ZkjKNUTkAYmN3D0Vw9rx0--r2RpIldV4mEBRUShiRWozPR7vL-O6rMmQ");
+        SpotifyClient spotify = new SpotifyClient("BQCkKeekZrmJcJ6Xncm6WmVBOgV8kNgG6FCi7vmyT-4FTIO_OjtUyluvqNsJeWLOjTM3U3B08DJWkVi-YmHLhfbreLxoIRWFKiY_yKo956fZF8WThO_A3ShXL6Zw0H0x8QQgP36cviTP-6gH1LCway2shaVO5HVxoiSd_MCE6EF0_uthfIZGceV9wsCERo3o-XKZaL2SvUrkI5NObMfCbisZCFmMEbZkWis");
         string username;
         BackgroundWorker bw;
         IList<string> uris = new List<string>();
@@ -38,6 +38,7 @@ namespace TweetAndBuy
             {
                 var user = await connection.twitterData.userClient.Users.GetUserAsync(username);
                 textBox1.Text = "Conectat";
+                button1.Enabled = false;
 
                 bw.DoWork += (obj, ea) => TaskAsync();
                 bw.RunWorkerAsync();
@@ -73,10 +74,14 @@ namespace TweetAndBuy
                 if (uris.Contains(track_uri) == false)
                 {
                     uris.Add(track_uri);
-                    PlaylistAddItemsRequest add_items_playlist_request = new PlaylistAddItemsRequest(uris);
+
+                    IList<string> uri = new List<string>();
+                    uri.Add(uris.ElementAt(uris.Count()-1));
+                    PlaylistAddItemsRequest add_items_playlist_request = new PlaylistAddItemsRequest(uri);
                     await spotify.Playlists.AddItems("5LnH39HnW4H4tncQMVdQzO", add_items_playlist_request);
+                    uri.Clear();
                 }
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
             }
         }
     }
