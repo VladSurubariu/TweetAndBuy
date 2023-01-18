@@ -17,9 +17,11 @@ namespace TweetAndBuy
     {
         connection connection = new connection();
         SpotifyClient spotify = new SpotifyClient("YOUR_ACCES_KEY");
-        string username;
-        BackgroundWorker bw;
         IList<string> uris = new List<string>();
+
+        string username;
+        string user_id_spotify = "5LnH39HnW4H4tncQMVdQzO";
+        BackgroundWorker bw;
 
         public GUI()
         {
@@ -83,7 +85,7 @@ namespace TweetAndBuy
                     IList<string> uri = new List<string>();
                     uri.Add(uris.ElementAt(uris.Count()-1));
                     PlaylistAddItemsRequest add_items_playlist_request = new PlaylistAddItemsRequest(uri);
-                    await spotify.Playlists.AddItems("5LnH39HnW4H4tncQMVdQzO", add_items_playlist_request);
+                    await spotify.Playlists.AddItems(user_id_spotify, add_items_playlist_request);
                     uri.Clear();
                 }
                 Thread.Sleep(1000);
